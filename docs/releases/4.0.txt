@@ -153,6 +153,10 @@ Minor features
   replaces paths to JavaScript modules in ``import`` and ``export`` statements
   with their hashed counterparts.
 
+* :meth:`ManifestStaticFilesStorage.__init__()
+  <django.contrib.staticfiles.storage.ManifestStaticFilesStorage>` now takes a
+  ``manifest_storage`` argument.
+
 :mod:`django.contrib.syndication`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

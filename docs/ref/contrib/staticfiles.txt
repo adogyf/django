@@ -313,12 +313,28 @@ For example, the ``'css/styles.css'`` file with this content:
 
     @import url("../admin/css/base.27e20196a850.css");
 
+You can specify the location of the manifest file by subclassing
+``ManifestStaticFilesStorage`` and setting the ``manifest_storage`` argument::
+
+    from django.conf import settings
+    from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
+
+    class MyManifestStaticFilesStorage(ManifestStaticFilesStorage):
+        def __init__(self, *args, **kwargs):
+            manifest_storage = ManifestStaticFilesStorage(
+                location=settings.BASE_DIR
+            )
+            super().__init__(*args, manifest_storage=manifest_storage, **kwargs)
+
 .. versionchanged:: 4.0
 
     Support for finding paths in the source map comments was added.
 
     Support for finding paths to JavaScript modules in ``import`` and
     ``export`` statements was added.
+
+    Support for custom manifest storages was added to the
+    ``ManifestStaticFilesStorage``.
 
 .. attribute:: storage.ManifestStaticFilesStorage.max_post_process_passes
 
